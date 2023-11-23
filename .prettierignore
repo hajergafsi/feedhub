@@ -1,0 +1,7 @@
+.bundle/
+android/
+ios/
+node_modules/
+.github/
+.watchmanconfig
+README.md

@@ -1,0 +1,20 @@
+import {createAsyncThunk} from '@reduxjs/toolkit';
+import apiClient from '../../../apis';
+
+const removeUpvote = createAsyncThunk(
+  'feeds/removeUpvote',
+  async ({id, token}: {id: string; token: string}) => {
+    try {
+      await apiClient().delete(`/feeds/${id}/upvote`, {
+        headers: {Authorization: `Bearer ${token}`},
+      });
+      return id;
+    } catch (err: any) {
+      console.log(err);
+      if (err?.response) throw new Error(err.response.data.message);
+      throw err;
+    }
+  },
+);
+
+export {removeUpvote};
